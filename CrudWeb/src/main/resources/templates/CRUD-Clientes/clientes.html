@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:include="fragments/modelo :: modelo">
+
+<body>
+
+	<main th:fragment="conteudo">
+
+		<div class="container my-3">
+			<div class="table-responsive tiraBarra">
+				<div class="table-title row">
+					<div class="col-9">
+						<h2>Clientes</h2>
+					</div>
+					<div class="col-3">
+						<a href="#" data-target="#novoCliente" class="btn btn-info w-100"
+							data-toggle="modal"> <i
+							class="material-icons align-middle pr-2">add_circle_outline</i><b
+							class="align-middle ">Novo Cliente</b>
+						</a>
+					</div>
+				</div>
+
+				<table class="table table-striped table-hover">
+					<thead class="thead-light">
+						<tr>
+							<th>CPF</th>
+							<th>Nome</th>
+							<th>Endereço</th>
+							<th>Data de nascimento</th>
+							<th>Email</th>
+							<th>Telefone</th>
+							<th class="larg">Ações</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="cliente:${lista}" th:object="${cliente}">
+							<td class="tdcliente" th:text="*{cpf}"></td>
+							<td class="tdcliente" th:text="*{nome_cliente}"></td>
+							<td class="tdcliente" th:text="*{endereco}"></td>
+							<td class="tdcliente" th:text="*{data_nasc}"></td>
+							<td class="tdcliente" th:text="*{email}"></td>
+							<td class="tdcliente" th:text="*{telefone}"></td>
+
+							<td class="larg"><a href="#"
+								th:attr="data-id=*{cod_cliente}" data-target="#deletarCliente"
+								class="text-decoration-none text-danger" data-toggle="modal">
+									<i class="material-icons" data-toggle="tooltip" title="Excluir">delete</i>
+							</a> <!-- th:href="@{/editar-proced(id=*{cod_proced})}" --> <a
+								href="#"
+								th:attr="data-id=*{cod_cliente}, data-cpf=*{cpf}, data-nome=*{nome_cliente}, data-endereco=*{endereco}, data-dtnasc=*{data_nasc}, data-email=*{email}, data-telefone=*{telefone}"
+								data-toggle="modal" data-target="#editarCliente"
+								class="text-decoration-none text-warning"> <i
+									class="material-icons" data-toggle="tooltip" title="Editar">edit</i>
+							</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+
+		<!-- Modal de Adição de Cliente -->
+		<div id="novoCliente" class="modal fade">
+			-->
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<form action="/novo-cliente" method="post" th:object="${cliente}">
+						<div class="modal-header">
+							<h4 class="modal-title">Novo Cliente</h4>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+						</div>
+						<div class="modal-body">
+							<div class="form-group">
+								<label>CPF</label> <input type="text" th:field="*{cpf}"
+									class="form-control" required>
+							</div>
+							<div class="form-group">
+								<label>Nome</label> <input type="text"
+									th:field="*{nome_cliente}" class="form-control" required>
+							</div>
+							<div class="form-group">
+								<label>Endereço</label> <input type="text"
+									th:field="*{endereco}" class="form-control" required>
+							</div>
+							<div class="form-group">
+								<label>Data de nascimento</label> <input type="date"
+									th:field="*{data_nasc}" class="form-control" required>
+							</div>
+							<div class="form-group">
+								<label>Email</label> <input type="email" th:field="*{email}"
+									class="form-control" required>
+							</div>
+							<div class="form-group">
+								<label>Telefone</label> <input type="tel" th:field="*{telefone}"
+									class="form-control" required>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<input type="button" class="btn btn-default" data-dismiss="modal"
+								value="Cancelar"> <input type="submit"
+								class="btn btn-success" value="Gravar">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal de Edição de Cliente -->
+		<div id="editarCliente" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<form action="/salvar-cliente" method="post" th:object="${cliente}">
+						<div class="modal-header">
+							<h4 class="modal-title">Editar Cliente</h4>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+						</div>
+						<div class="modal-body">
+							<div class="form-group d-none">
+								<label for="nome">Cod_cliente</label> <input type="text"
+									class="form-control" th:field="*{cod_cliente}" required>
+							</div>
+							<div class="form-group">
+								<label>CPF</label> <input type="text" th:field="*{cpf}"
+									class="form-control" required>
+							</div>
+							<div class="form-group">
+								<label>Nome</label> <input type="text"
+									th:field="*{nome_cliente}" class="form-control" required>
+							</div>
+							<div class="form-group">
+								<label>Endereço</label> <input type="text"
+									th:field="*{endereco}" class="form-control" required>
+							</div>
+							<div class="form-group">
+								<label>Data de nascimento</label> <input type="date"
+									th:field="*{data_nasc}" class="form-control" required>
+							</div>
+							<div class="form-group">
+								<label>Email</label> <input type="email" th:field="*{email}"
+									class="form-control" required>
+							</div>
+							<div class="form-group">
+								<label>Telefone</label> <input type="tel" th:field="*{telefone}"
+									class="form-control" required>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<input type="button" class="btn btn-default" data-dismiss="modal"
+								value="Cancelar"> <input type="submit"
+								class="btn btn-info" value="Salvar">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal de Exclusão de Procedimento  -->
+		<div id="deletarCliente" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<form form action="/excluir-cliente" method="get"
+						th:object="${cliente}">
+						<div class="form-group d-none">
+							<label for="nome">Cod_cliente</label> <input type="text"
+								class="form-control" th:field="*{cod_cliente}" required>
+						</div>
+						<div class="modal-header">
+							<h4 class="modal-title">Deletar Cliente</h4>
+							<button type="submit" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+						</div>
+						<div class="modal-body">
+							<p>Você tem certeza que deseja deletar este cliente?</p>
+							<p class="text-warning">
+								<small>Esta ação não poderá ser desfeita.</small>
+							</p>
+						</div>
+						<div class="modal-footer">
+							<input type="button" class="btn btn-default" data-dismiss="modal"
+								value="Cancelar"> <input type="submit"
+								class="btn btn-danger" value="Deletar">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</main>
+</body>
+
+</html>

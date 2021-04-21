@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <nav th:fragment="navbar">
+        <div class="navbar">
+            <div class="col-md">
+                <h1 class="navH1">
+                    Esteti<span class="letra">L</span>ab
+                </h1>
+            </div>
+            <div class="col-md">
+                <img class="logo" src="imagens/logoEstetilLab.jpg" alt="logo Estetilab">
+            </div>
+        </div>
+        <div class="navbar navbar-expand-md navbar-dark bg-info navbar-small">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav m-auto">
+                    <li><a id="home" class="btn rosa bnt-border-radius corfont m-1 px-4" href="/">Home</a></li>
+                    <li><a id="clientes" class="btn rosa bnt-border-radius  corfont m-1 px-4" href="/clientes">Clientes</a></li>
+                    <li><a class="btn rosa bnt-border-radius corfont m-1 px-4" href="/agenda">Agendamentos</a></li>
+                    <li><a class="btn rosa bnt-border-radius corfont m-1 px-4" href="/procedimentos">Procedimentos</a></li>
+                    <li><a class="btn rosa bnt-border-radius corfont m-1 px-4" href="/produtos">Produtos Home Care</a></li>
+                    <li><a class="btn rosa bnt-border-radius corfont m-1 px-4" href="/venda">Venda</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</body>
+
+</html>
